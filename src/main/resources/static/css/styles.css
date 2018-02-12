@@ -1,0 +1,87 @@
+.readonly {
+	border: none;
+	background: transparent;
+	cursor: text;
+}
+
+.phone-display {
+	width: 112px;
+}
+
+.sort {
+	cursor: pointer;
+	white-space: nowrap;
+}
+.sort:hover span {
+	text-decoration: underline;
+}
+
+.dynamic {
+	overflow: hidden;
+}
+
+.dynamic.name {
+	max-width: 100px;
+}
+
+.dynamic.email {
+	max-width: 150px;
+}
+
+@media only screen and (max-width:768px) {
+	.table .dynamic {
+		max-width: none;
+	}
+
+	/* Force table to not be like tables anymore */
+	#addressBook table,
+	#addressBook thead,
+	#addressBook tbody,
+	#addressBook th,
+	#addressBook td,
+	#addressBook tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	#addressBook thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	#addressBook tr {
+		border: 1px solid #ccc;
+	}
+
+	#addressBook td {
+
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		white-space: normal;
+		text-align: left;
+	}
+
+	#addressBook td:before {
+
+		/* Now like a table header */
+		position: absolute;		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+		text-align: left;
+		font-weight: bold;
+	}
+
+	/*
+	Label the data
+	*/
+	#addressBook td:before {
+		content: attr(data-title);
+	}
+
+}

@@ -1,0 +1,136 @@
+<div class="container">
+	<h2>{{controller.label}} Address</h2>
+	<div class="row">
+		<div class="col-12 col-md-9">
+			<form name="form" class="{{controller.getReadOnly()}}" novalidate >
+				<fieldset class="form-group">
+					<div ng-class="(form.$submitted || form.firstName.$touched) && form.firstName.$error.required == true ? 'form-check has-danger' : 'form-check ' ">
+						<label>First Name:</label>
+						<input type="text" name="firstName" ng-model="controller.address.firstName" required ng-readonly="controller.getReadOnly()" class="form-control">
+						<div ng-show="form.$submitted || form.firstName.$touched" class="form-control-feedback">
+							<div class="form-control-feedback" ng-show="form.firstName.$error.required">Please enter a first name.</div>
+						</div>
+					</div>
+					
+					<div ng-class="(form.$submitted || form.lastName.$touched) && form.lastName.$error.required == true ? 'form-check has-danger' : 'form-check '">
+						<label>Last Name:</label>
+						<input type="text" name="lastName" ng-model="controller.address.lastName" required ng-readonly="controller.getReadOnly()" class="form-control">
+						<div ng-show="form.$submitted || form.lastName.$touched">
+							<div class="form-control-feedback" ng-show="form.lastName.$error.required">Please enter a last name.</div>
+						</div>
+					</div>
+					<div ng-class="(form.$submitted || form.address.$touched) && form.address.$error.required == true ? 'form-check has-danger' : 'form-check '">
+						<label>Address 1:</label>
+						<input type="text" name="address" ng-model="controller.address.address" required ng-readonly="controller.getReadOnly()" class="form-control">
+						<div ng-show="form.$submitted || form.address.$touched">
+							<div class="form-control-feedback" ng-show="form.address.$error.required">Please enter an address.</div>
+						</div>
+					</div>
+					<div class="form-check">
+						<label>Address 2:</label>
+						<input type="text" name="address2" ng-model="controller.address.address2" ng-readonly="controller.getReadOnly()" class="form-control">
+					</div>
+					<div ng-class="(form.$submitted || form.city.$touched) && form.city.$error.required == true ? 'form-check has-danger' : 'form-check '">
+						<label>City:</label>
+						<input type="text" name="city" ng-model="controller.address.city" required ng-readonly="controller.getReadOnly()" class="form-control">
+						<div ng-show="form.$submitted || form.city.$touched">
+							<div class="form-control-feedback" ng-show="form.city.$error.required">Please enter a city.</div>
+						</div>
+					</div>
+					<div ng-class="(form.$submitted || form.state.$touched) && form.state.$error.required == true ? 'form-check has-danger' : 'form-check '">
+						<label for="stateSelect">State:</label>
+						<select id="state" name="state" ng-model="controller.address.state"
+							class="form-control" required ng-readonly="controller.getReadOnly()" ng-disabled="controller.getReadOnly()">
+							<option value="AL">Alabama</option>
+							<option value="AK">Alaska</option>
+							<option value="AZ">Arizona</option>
+							<option value="AR">Arkansas</option>
+							<option value="CA">California</option>
+							<option value="CO">Colorado</option>
+							<option value="CT">Connecticut</option>
+							<option value="DE">Delaware</option>
+							<option value="DC">District Of Columbia</option>
+							<option value="FL">Florida</option>
+							<option value="GA">Georgia</option>
+							<option value="HI">Hawaii</option>
+							<option value="ID">Idaho</option>
+							<option value="IL">Illinois</option>
+							<option value="IN">Indiana</option>
+							<option value="IA">Iowa</option>
+							<option value="KS">Kansas</option>
+							<option value="KY">Kentucky</option>
+							<option value="LA">Louisiana</option>
+							<option value="ME">Maine</option>
+							<option value="MD">Maryland</option>
+							<option value="MA">Massachusetts</option>
+							<option value="MI">Michigan</option>
+							<option value="MN">Minnesota</option>
+							<option value="MS">Mississippi</option>
+							<option value="MO">Missouri</option>
+							<option value="MT">Montana</option>
+							<option value="NE">Nebraska</option>
+							<option value="NV">Nevada</option>
+							<option value="NH">New Hampshire</option>
+							<option value="NJ">New Jersey</option>
+							<option value="NM">New Mexico</option>
+							<option value="NY">New York</option>
+							<option value="NC">North Carolina</option>
+							<option value="ND">North Dakota</option>
+							<option value="OH">Ohio</option>
+							<option value="OK">Oklahoma</option>
+							<option value="OR">Oregon</option>
+							<option value="PA">Pennsylvania</option>
+							<option value="RI">Rhode Island</option>
+							<option value="SC">South Carolina</option>
+							<option value="SD">South Dakota</option>
+							<option value="TN">Tennessee</option>
+							<option value="TX">Texas</option>
+							<option value="UT">Utah</option>
+							<option value="VT">Vermont</option>
+							<option value="VA">Virginia</option>
+							<option value="WA">Washington</option>
+							<option value="WV">West Virginia</option>
+							<option value="WI">Wisconsin</option>
+							<option value="WY">Wyoming</option>
+						</select>
+						<div ng-show="form.$submitted || form.state.$touched">
+							<div class="form-control-feedback" ng-show="form.state.$error.required">Please select a state.</div>
+						</div>
+					</div>
+					<div ng-class="(form.$submitted || form.zip.$touched) && form.zip.$error.required == true ? 'form-check has-danger' : 'form-check '">
+						<label for="zip">Zip:</label>
+						<input type="text" id="zip" name="zip" ng-model="controller.address.zipcode" required ng-readonly="controller.getReadOnly()" class="form-control">
+						<div ng-show="form.$submitted || form.zip.$touched">
+							<div class="form-control-feedback" ng-show="form.zip.$error.required">Please enter a zipcode.</div>
+						</div>
+					</div>
+					<div ng-class="(form.$submitted || form.email.$touched)
+						&& ( form.email.$error.required == true || form.email.$error.email == true )
+						? 'form-check has-danger' : 'form-check '">
+						<label for="email">Email:</label>
+						<input type="email" id="email" name="email" ng-model="controller.address.email" required ng-readonly="controller.getReadOnly()" class="form-control">
+						<div ng-show="form.$submitted || form.email.$touched">
+							<div class="form-control-feedback" ng-show="form.email.$error.required">Please enter an email address.</div>
+							<div class="form-control-feedback" ng-show="form.email.$error.email">Please enter a valid email address.</div>
+						</div>
+					</div>
+					<div ng-class="(form.$submitted || form.phone.$touched) && form.phone.$error.required == true ? 'form-check has-danger' : 'form-check '">
+						<label for="phone">Phone:</label>
+						<input type="text" id="phone" name="phone" ui-mask="{{'(999) 999-9999'}}" ng-model="controller.address.phone" required ng-readonly="controller.getReadOnly()" class="form-control">
+						<div ng-show="form.$submitted || form.phone.$touched">
+							<div class="form-control-feedback" ng-show="form.phone.$error.required">Please enter a phone number.</div>
+							<div class="form-control-feedback" ng-show="form.phone.$error.phone">Please enter a valid phone number.</div>
+						</div>
+					</div>
+				</fieldset>
+				
+				<br>
+				<button type="button" ng-hide="controller.isReadOnly" ng-click="controller.cancel()" class="btn ng-hide">Cancel</button>
+				
+				<button ng-disabled="form.$invalid" ng-hide="controller.isReadOnly" type="submit" ng-click="controller.save()" class="btn btn-primary ng-hide">Save</button>
+				<!-- view only-->
+				<button type="button" ng-hide="!controller.isReadOnly" ng-click="controller.cancel()" class="btn ng-hide">Back</button>
+			</form>
+		</div>
+	</div>
+</div>

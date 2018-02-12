@@ -1,0 +1,58 @@
+<div id="addressBook" class="container-responsive px-3" ng-controller="ListAddressController as controller">
+    <h1>My Address Book</h1>
+    <form class="form-inline">
+        <input class="form-control mr-0 mr-sm-3 mb-3" type="search" ng-model="controller.filter" id="searchAddress" placeholder="Search" aria-label="search">
+        <select name="state" ng-model="controller.searchField" class="form-control mb-3" aria-label="Filter Results By">
+            <option value="ALL">All Fields</option>
+            <option value="FIRST">First Name</option>
+            <option value="LAST">Last Name</option>
+            <option value="EMAIL">Email</option>
+        </select>
+    </form>
+    <table class="table table-striped table-bordered table">
+        <thead>
+            <tr>
+                <th class="text-center"><i class="fa fa-trash fa2" aria-hidden="true"></i></th>
+                <th class="sort first" ng-click="controller.sortType = 'firstName'; controller.sortReverse = !controller.sortReverse;">
+                    <span>First Name</span>
+                    <i ng-class="controller.sortType !== 'firstName' ? 'invisible fa fa-fw' :
+                    (controller.sortReverse === true ? 'fa fa-fw fa-sort-desc' : 'fa fa-fw fa-sort-asc')"></i>
+                </th>
+                <th class="sort last" ng-click="controller.sortType = 'lastName'; controller.sortReverse = !controller.sortReverse;">
+                    <span>Last Name</span>
+                    <i ng-class="controller.sortType !== 'lastName' ? 'invisible fa fa-fw' :
+                    (controller.sortReverse === true ? 'fa fa-fw fa-sort-desc' : 'fa fa-fw fa-sort-asc')"></i>
+                </th>
+                <th class="sort email" ng-click="controller.sortType = 'email'; controller.sortReverse = !controller.sortReverse;">
+                    <span>Email</span>
+                    <i ng-class="controller.sortType !== 'email' ? 'invisible fa fa-fw' :
+                    (controller.sortReverse === true ? 'fa fa-fw fa-sort-desc' : 'fa fa-fw fa-sort-asc')"></i>
+                </th>
+                <th class="">Phone</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="address in controller.filteredList | orderBy:controller.sortType:controller.sortReverse" ng-class="address.delete === true ? 'table-danger' : ''" >
+                <td>
+                    <input type="checkbox" ng-model="address.delete" aria-label="Select Address">
+                    <i class="fa fa-trash fa2 hidden-md-up" aria-hidden="true"></i>
+                </td>
+                <td class="dynamic name" aria-label="First Name">{{address.firstName}}</td>
+                <td class="dynamic name" aria-label="Last Name">{{address.lastName}}</td>
+                <td class="dynamic email" aria-label="Email">{{address.email}}</td>
+                <td aria-label="Phone"><input type="text" ng-model="address.phone" class="readonly phone-display" readonly ui-mask="{{'(999) 999-9999'}}"></td>
+                <td class="text-center"><img gravatar-src="address.email" gravatar-size="50" alt="gravatar"></td>
+                <td class="text-center">
+                    <button ng-click="location.path('/view/'+address.id)" class="mb-2 mb-lg-0" aria-label="View Address"><i class="fa fa-id-card fa2" aria-hidden="true"></i></button>
+                    <button ng-click="location.path('/edit/'+address.id)" aria-label="Edit Address"><i class="fa fa-pencil fa2" aria-hidden="true"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-hide="controller.filteredList.length" class="mb-4">
+        <strong>No results found...</strong>
+    </div>
+    <button ng-disabled="controller.deleteDisabled()" ng-click="controller.deleteSelected()" class="btn btn-primary">Delete Addresses</button>
+    <button ng-click="location.path('/new')" class="btn btn-primary">Create Address</button>
+</div>
