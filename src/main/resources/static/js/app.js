@@ -1,6 +1,5 @@
 var AddressApp = angular.module('addressApp', ['ngRoute', 'ui.mask', 'ui.gravatar']),
     //public namespace
-    //ADD = { "apiUrl":"http://front-end.oudemo.com/api", "apiKey":"12e985d9-ce49-440c-af67-466efbb738e8"};
 	ADD = { "apiUrl":"http://localhost:8080/api"};
 
 
